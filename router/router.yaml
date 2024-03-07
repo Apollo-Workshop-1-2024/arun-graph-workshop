@@ -1,19 +1,5 @@
 # Configuration of the router's HTTP server
 # Default configuration for container
-authentication:
-router:
-jwt:
-header_name: Authorization
-header_value_prefix: Bearer
-jwks:
-- url:
-https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserv
-iceaccount.com
-authorization:
-require_authentication: false
-preview_directives:
-enabled: true
-
 supergraph:
   # The socket address and port to listen on
   listen: 0.0.0.0:${env.PORT:-4000}
@@ -43,4 +29,16 @@ subscription:
          path: /
 
 ## Enter Workshop Module Configs Below
+authentication:
+  router:
+    jwt:
+      header_name: Authorization
+      header_value_prefix: Bearer
+      jwks:
+        - url: https://www.googleapis.com/service_accounts/v1/jwk/securetoken@system.gserviceaccount.com
+
+authorization:
+  require_authentication: false
+  preview_directives: 
+    enabled: true
 
